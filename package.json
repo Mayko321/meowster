@@ -1,0 +1,19 @@
+{
+  "name": "meowster",
+  "version": "1.0.0",
+  "description": "simple cat adoption app",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mayko321/meowster.git"
+  },
+  "author": "maykie",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mayko321/meowster/issues"
+  },
+  "homepage": "https://github.com/Mayko321/meowster#readme"
+}
