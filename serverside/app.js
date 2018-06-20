@@ -2,12 +2,11 @@ var express = require("express");
 var app = express ();
 var bodyParser = require('body-parser');
 var mongoose = require ('mongoose');
+var userSchema = require('./users');
+
 
 //our user model schema
-var User = mongoose.model('User',userSchema);
-
-//making this model available to our users.
-module.exports = {User: User};
+var User = mongoose.model('User', userSchema);
 
 //connecting the app to mongoose
 //the link is the a cloud database storage called mLabs sandbox
