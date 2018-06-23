@@ -1,8 +1,8 @@
-var mongoose = require ('mongoose');
-var Schema = mongoose.Schema;
+const mongoose = require ('mongoose');
+const Schema = mongoose.Schema;
 
 // creating multiple users schema
-var User = new Schema ({
+const User = new Schema ({
   
   firstName: String,
   surname: String,

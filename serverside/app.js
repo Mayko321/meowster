@@ -1,24 +1,29 @@
-var express = require("express");
-var app = express ();
-var bodyParser = require('body-parser');
-var mongoose = require ('mongoose');
-var userSchema = require('./users');
+const express = require("express");
+const app = express ();
+const bodyParser = require('body-parser');
+const mongoose = require ('mongoose');
+const userSchema = require('./users');
 
+//instructing the app to use body parser
+app.use(bodyParser.json());
 
 //our user model schema
-var User = mongoose.model('User', userSchema);
+const User = mongoose.model('User', userSchema);
 
 //connecting the app to mongoose
 //the link is the a cloud database storage called mLabs sandbox
 mongoose.connect ('mongodb://maykie:cheese123@ds261540.mlab.com:61540/meowster');
-var db = mongoose.connection;
+const db = mongoose.connection;
 
-//gets the requested page for you
+//gets the homepage for you
 app.get('/', function(req, res){
   res.send('Welcome to the Meowster landing page!');
-  
-  
+    
 });
+
+//gets the list of users from the database
+
+
 
 
 
