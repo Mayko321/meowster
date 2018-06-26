@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const mongoose = require ('mongoose');
 const userSchema = require('./users');
 
-//instructing the app to use body parser
+//instructing the app to use body parser which will help us pass json data
 app.use(bodyParser.json());
 
 
@@ -28,12 +28,27 @@ app.get('/signup', function(req,res){
   res.send('new users signup')
 });
 
+
 //add new user to the database
 app.post('/User',function(req,res){
-  res.send({type:'post'})
+  console.log(req.body);
+  res.send({
+    type:'POST'
+   
+    
+  });
   
 });
 
+//user can update their details to the database
+app.put('/User', function(req,res){
+  res.send({type:'update user details'})
+});
+
+//user can delete their account
+app.delete('/User',function(req,res){
+  res.send({type:'delete user account'})
+});
 
 //gets the login page
 app.get('/login',function(req,res){
