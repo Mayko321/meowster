@@ -32,10 +32,11 @@ app.get('/signup', function(req,res){
 //add new user to the database
 app.post('/User',function(req,res){
   console.log(req.body);
-  res.send({
-    type:'POST'
+  res.send({ 
+    type:'POST',
+    name: req.body.name,
+    rank: req.body.rank
    
-    
   });
   
 });
