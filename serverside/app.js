@@ -2,18 +2,16 @@ const express = require("express");
 const app = express ();
 const bodyParser = require('body-parser');
 const mongoose = require ('mongoose');
-const UserSchema = require('./models/users');
+const User = require('./models/users');
+const Cat = require('./models/cat');
 
 //instructing the app to use body parser which will help us pass json data
 app.use(bodyParser.json());
 
-
-
-
-//connecting the app to mongoose
-//the link is the a cloud database storage called mLabs sandbox
+//connecting to cloud database storage called mLabs sandbox
 mongoose.connect ('mongodb://maykie:cheese123@ds261540.mlab.com:61540/meowster');
 const db = mongoose.connection;
+mongoose.Promise = global.Promise;
 
 //gets the homepage for you
 app.get('/homepage', function(req, res){
@@ -53,6 +51,17 @@ app.get('/login',function(req,res){
   
 });
 
+//the cat section
+//add new cat
+app.post('/newcat',function(req,res){
+  Cat.create(req.body).then(function(cat){
+   res.send(cat);
+  });
+    
+});
+
+
+//update cat profile
 
 
 app.get('/', (req, res) => res.send('Alls Good'));

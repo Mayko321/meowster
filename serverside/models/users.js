@@ -1,4 +1,4 @@
-const mongoose = require ('mongoose');
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 // creating multiple users schema and model
@@ -35,7 +35,7 @@ const UserSchema = newSchema({
 const User = mongoose.model('user', UserSchema);
 
 //making this model available to the server
-module.exports = user;
+module.exports = User;
 
 
 
