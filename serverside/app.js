@@ -2,15 +2,13 @@ const express = require("express");
 const app = express ();
 const bodyParser = require('body-parser');
 const mongoose = require ('mongoose');
-const userSchema = require('./users');
+const UserSchema = require('./models/users');
 
 //instructing the app to use body parser which will help us pass json data
 app.use(bodyParser.json());
 
 
-//our user model schema
-//lets the app use it
-const User = mongoose.model('User', userSchema);
+
 
 //connecting the app to mongoose
 //the link is the a cloud database storage called mLabs sandbox
@@ -25,35 +23,33 @@ app.get('/homepage', function(req, res){
 
 //gets the signup page
 app.get('/signup', function(req,res){
-  res.send('new users signup')
+  res.send('new users signup');
 });
 
 
 //add new user to the database
-app.post('/User',function(req,res){
-  console.log(req.body);
-  res.send({ 
-    type:'POST',
-    name: req.body.name,
-    rank: req.body.rank
-   
-  });
-  
+app.post('/user',function(req,res){
+  res.send('new user');    
+});
+
+//show new user profile page
+app.get('/profile',function(req,res){
+  res.send('user profile');    
 });
 
 //user can update their details to the database
-app.put('/User', function(req,res){
-  res.send({type:'update user details'})
+app.put('/update user', function(req,res){
+  res.send({type:'update user details'});
 });
 
 //user can delete their account
-app.delete('/User',function(req,res){
-  res.send({type:'delete user account'})
+app.delete('/user',function(req,res){
+  res.send({type:'delete user account'});
 });
 
 //gets the login page
 app.get('/login',function(req,res){
-  res.send('User login')
+  res.send('User login');
   
 });
 
