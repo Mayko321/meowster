@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 //create cat schema and model
-const CatSchema = newSchema({
+const CatSchema = Schema({
   name:{
     type:String,
     required: [true, 'Name field is required'],
@@ -12,15 +12,15 @@ const CatSchema = newSchema({
     
   },
   age:{
-    type:numerical,
+    type:Number,
   },
   
   available:{
-    type:boolean,
+    type:Boolean,
     default:false,
 },
   sponsor:{
-    type:boolean,
+    type:Boolean,
     deafult:false,
 }
   

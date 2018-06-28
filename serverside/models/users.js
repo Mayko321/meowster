@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 // creating multiple users schema and model
-const UserSchema = newSchema({
+const UserSchema = Schema({
   
   firstName:{
     type: String,
