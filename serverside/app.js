@@ -5,6 +5,8 @@ const mongoose = require ('mongoose');
 const User = require('./models/users');
 const Cat = require('./models/cat');
 
+
+
 //instructing the app to use body parser which will help us pass json data
 app.use(bodyParser.json());
 
@@ -31,12 +33,19 @@ app.get('/signup', function(req,res,next){
      res.send('new users signup');
 });
 
+//gets the login page
+app.get('/login',function(req,res,next){
+  res.send('User login');
+});
+
+                                            //New user section
 
 //adding a new user to the database
-app.post('/user',function(req,res,next){
+app.post('/newuser',function(req,res,next){
   User.create(req.body).then(function(user){
-    res.send('new user');  
-  }).catch(next); 
+    res.send(user);  
+  });
+//     .catch(next); 
 });
 
 
@@ -45,9 +54,14 @@ app.get('/profile',function(req,res,next){
   res.send('user profile');    
 });
 
-//user can update their details to the database
-app.put('/updateuser', function(req,res,next){
-  res.send({type:'update user details'});
+
+// updating a particular user account with their new details to the database
+app.put('/updateuser/:id', function(req,res,next){
+  User.findByIdAndUpdate({_id: req.params.id}, req,res.body).then(function(){
+    User.findOne({_id: req.params.id}).then(function(user){
+      res.send(user);
+    });    
+  }); 
 });
 
 
@@ -58,13 +72,9 @@ app.delete('/user/:id',function(req,res,next){
   });
 });
 
-//gets the login page
-app.get('/login',function(req,res,next){
-  res.send('User login');
-  
-});
 
-//the cat section
+
+                                          //the cat section//
 //adding a new cat to the database
 app.post('/newcat',function(req,res,next){
   Cat.create(req.body).then(function(cat){
@@ -85,14 +95,22 @@ app.put('/updatecat/:id',function(req,res,next){
 });
         
         
-
 //to delete an account
 //here we have added parameters to delete a specific account
-app.delete('/newcat/:id', function(req,res,next){
+app.delete('/cat/:id', function(req,res,next){
   Cat.findByIdAndRemove({_id: req.params.id}).then(function(cat){
     res.send(cat);
   });
 });
+
+//find the geo location of a cat nearby given a specific coordinates NOT FINISHED
+app.get('/cat/:id', function(req, res, next){
+  Cat.geoNear(
+    {type:'point', coordinates:[parseFloat(req.query.lng),parseFloat(req.query.lat)]},
+    {maxDistance}
+  );
+})
+
 
 
 app.get('/', (req, res) => res.send('Alls Good'));

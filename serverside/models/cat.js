@@ -1,6 +1,23 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+
+    
+//create geo location schema
+const GeoSchema = Schema({
+  type:{
+    type:String, //tells us what type of data it is not the type of location
+    default:"Point",
+  },
+  coordinates:{
+    type:[Number],
+    index:"2dsphere" //the type of map we would like to use
+       
+    
+  },   
+});
+   
+
 //create cat schema and model
 const CatSchema = Schema({
   name:{
@@ -22,10 +39,11 @@ const CatSchema = Schema({
   sponsor:{
     type:Boolean,
     deafult:false,
-}
+},
+  geometry:GeoSchema //add in geo location using geo json handler, giving location of the cats
   
-  //add in geo location
- //will give you the location of the cats
+                                         
+                         
   
 });
 const Cat = mongoose.model('cat', CatSchema);

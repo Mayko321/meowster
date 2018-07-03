@@ -4,33 +4,22 @@ const Schema = mongoose.Schema;
 // creating multiple users schema and model
 const UserSchema = Schema({
   
-  firstName:{
+  firstname:{
     type: String,
-    required: [true, 'First Name required'], 
+    required: [true, 'First Name is required'], 
 },
   surname:{
     type:String,
-    required: [true, 'Surname required'],
+    required: [true, 'Surname is required'],
   },
-  username: {
-    type: String, 
-    required: true, 
-    unique: true
-  },
-  userId: {
-    type: Number, 
-    required: true, 
-    unique: true
-  },
+ 
   password: {
     type: String, 
-    required:true
-  },
-  age:Number,
-  dateOfBirth:Number
-
+    required:[true, 'password is required'],
+  }
+  
 });
-
+ 
 //our user model 
 const User = mongoose.model('user', UserSchema);
 
