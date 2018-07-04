@@ -103,13 +103,34 @@ app.delete('/cat/:id', function(req,res,next){
   });
 });
 
-//find the geo location of a cat nearby given a specific coordinates NOT FINISHED
+//find the geo location of a cat nearby given a specific coordinates using an aggregate in the api which will search the whole list of cats based on the geomtery settings.
 app.get('/cat/:id', function(req, res, next){
-  Cat.geoNear(
-    {type:'point', coordinates:[parseFloat(req.query.lng),parseFloat(req.query.lat)]},
-    {maxDistance}
+  Cat.aggregate(
+    [
+      { "$geoNear": {
+        "near": { 
+            "type": "Point", 
+            "coordinates": [parseFloat(req.query.lng),parseFloat(req.query.lat)]
+        },
+        "distanceField": "dist.calculated",
+        "maxDistance": 999999,
+        "spherical": true,
+        "key": "geometry"
+      }}
+    ],
+    function(err,cats) {
+      res.send(cats);
+    }
   );
-})
+
+//   Cat.geoNear(
+//     //{type:'point', coordinates:[parseFloat(req.query.lng),parseFloat(req.query.lat)]},
+//     {type:'Point', coordinates:[153.027117, -27.468515]},
+//     {maxDistance: 999999, spherical: true}
+//   ).then(function(cat){
+//     res.send(cat);  
+//   });
+});
 
 
 
