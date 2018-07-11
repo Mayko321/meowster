@@ -12,10 +12,22 @@
     <link href="/style.css" rel="stylesheet" type="text/css"/>
   </head>
   <body>
+    <div class="topnav-right">
+        <a href="#login">Login</a>
+        <a href="#register">Register</a>
+        
+      </div>
     <h1 class="title">Meowster</h1>
     <form>
+      
       <div class="form-group">
         <label for="inputEmail"></label>
+        <div class="input-group">
+          <div class="input-group-addon">
+            @
+          </div>
+          
+        </div>
         <input type="email" class="form-control" id="inputEmail" placeholder="E-mail">
       </div>
       <div class="form-group">
@@ -26,15 +38,17 @@
           <label for="confirmPasssword"></label>
           <input type="confirmpassword" class="form-control" id="confirmPassword" placeholder="Confirm Password">
         </div>
+      <br>
       <div class="submit">
         <input type="checkbox" name="termsandconditions" value="tick">I have read and agree with the Terms and Conditions of Service<br>
         <br>
         <input type="submit" value="Register">
       </div>
     
+    
         
     </form>
-  
+    
       
   </body>
 </html>

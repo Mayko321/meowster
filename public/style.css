@@ -1,15 +1,35 @@
 body{
   font-family: 'Knewave',cursive;
-  ;
+
   
 }
 
 .title{
-  font-family: 'Knewave',cursive;
+ font-family: 'Knewave',cursive;
  text-align: center;
+ font-size: 120px;
+ padding: 100px;
 }
 
 .submit{
   text-align:center;
 }
+.form-group{
+  width: 50%;
+  padding: 5px;
+  margin: auto;
+  border: none;
+ 
+ 
+}
+.topnav-right{
+  float:right;
+  margin: 40px;
+  text-decoration-color: black;
   
+ 
+  
+}
+.a: link {
+  color: pink;
+}
