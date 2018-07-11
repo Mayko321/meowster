@@ -1,1 +1,15 @@
-font-family: 'Knewave', cursive;
+body{
+  font-family: 'Knewave',cursive;
+  ;
+  
+}
+
+.title{
+  font-family: 'Knewave',cursive;
+ text-align: center;
+}
+
+.submit{
+  text-align:center;
+}
+  
