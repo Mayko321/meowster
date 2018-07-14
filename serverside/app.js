@@ -6,7 +6,8 @@ const User = require('./models/users');
 const Cat = require('./models/cat');
 
 //make sure that the app is showing the static pages
-app.use(express.static('../public'));
+app.use(express.static('../public'));//allows access to the public folder
+app.use(express.static('../public/images')); //allows access to the images folder
 
 
 //instructing the app to use body parser which will help us pass json data
