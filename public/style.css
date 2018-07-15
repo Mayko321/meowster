@@ -8,7 +8,9 @@ body{
  font-family: 'Knewave',cursive;
  text-align: center;
  font-size: 120px;
- padding: 100px;
+ padding: 150px;
+ display: block;
+ postion: fixed;
 }
 
 .submit{
@@ -24,11 +26,19 @@ body{
 }
 .topnav-right{
   float:right;
-  margin: 40px;
   text-decoration-color: black;
+  font-size:30px;
+  padding: 30px;
   
   
 }
+
+.topnavlist{
+  list-style: none;
+  margin:0;
+  padding:0;
+}
+
 .a: link {
   color: black;
 }
@@ -37,4 +47,19 @@ body{
   color:black;
   border: black;
   
+}
+.logoimg{
+  height:500px;
+  display:block;
+  margin-left:auto;
+  margin-right:auto;
+ 
+}
+
+.bottomnav{
+  color: black;
+  float: left;
+  font-size: 20px;
+  padding: 60px;
+  display:inline-block;
 }
