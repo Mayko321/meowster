@@ -40,6 +40,14 @@ html
         span.input-group-addon
           span.glyphicon.glyphicon-lock
         input.form-control(type='password', placeholder='Password')
+      .input-group.input-group-lg
+        span.input-group-addon
+          span.glyphicon.glyphicon-ok
+        input.form-control(type='confirm password', placeholder='Confirm Password')
       br
       .submit
-        input(type='submit', value='Login', a='')
+        input(type='checkbox', name='termsandconditions', value='tick')
+        | I have read and agree with the Terms and Conditions of Service
+        br
+        br
+        input(type='submit', value='Register')

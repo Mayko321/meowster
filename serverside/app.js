@@ -35,15 +35,19 @@ app.get('/', function(req, res,next){
 });
 
 
-//gets the signup page
+
+//gets the register page when it is clicked on
 app.get('/register', function(req,res,next){
-     res.send('new users signup');
+  console.log("register is up");
+     res.render('register');
 });
 
 //gets the login page
 app.get('/login',function(req,res,next){
+  console.log("login is running");
   res.render('login');
 });
+
 
                                             //New user section
 
