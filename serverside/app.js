@@ -7,8 +7,11 @@ const Cat = require('./models/cat');
 
 //make sure that the app is showing the static pages
 app.use(express.static('../public'));//allows access to the public folder
-app.use(express.static('../public/images')); //allows access to the images folder
+app.use(express.static('images')); //allows access to the images folder
 
+//telling the app to use jade templating language
+app.set('views', './views')
+app.set('view engine', 'jade')
 
 //instructing the app to use body parser which will help us pass json data
 app.use(bodyParser.json());
@@ -26,19 +29,20 @@ app.use(function(error,req,res,next){
 
 //The api for our web application STARTS HERE:
 //gets the homepage for you
-app.get('/homepage', function(req, res,next){
-  res.send('Welcome to the Meowster home page!');   
+app.get('/', function(req, res,next){
+  console.log("homepage is up");
+  res.render('index');
 });
 
 
 //gets the signup page
-app.get('/signup', function(req,res,next){
+app.get('/register', function(req,res,next){
      res.send('new users signup');
 });
 
 //gets the login page
 app.get('/login',function(req,res,next){
-  res.send('User login');
+  res.render('login');
 });
 
                                             //New user section
@@ -125,19 +129,11 @@ app.get('/cat/:id', function(req, res, next){
       res.send(cats);
     }
   );
-
-//   Cat.geoNear(
-//     //{type:'point', coordinates:[parseFloat(req.query.lng),parseFloat(req.query.lat)]},
-//     {type:'Point', coordinates:[153.027117, -27.468515]},
-//     {maxDistance: 999999, spherical: true}
-//   ).then(function(cat){
-//     res.send(cat);  
-//   });
 });
 
 
 
-app.get('/', (req, res) => res.send('Alls Good'));
+app.get('/', (req, res) => res.send('/index'));
 
 
 app.listen(process.env.PORT || 3000, process.env.IP || "0.0.0.0", function() {

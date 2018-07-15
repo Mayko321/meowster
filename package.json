@@ -9,6 +9,7 @@
   "dependencies": {
     "bootstrap": "^3.3.7",
     "express": "^4.16.3",
+    "jade": "^1.11.0",
     "mongoose": "^5.1.6"
   },
   "repository": {
