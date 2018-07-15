@@ -21,22 +21,6 @@ body{
   padding: 5px;
   margin: auto;
   border: none;
- 
- 
-}
-.topnav-right{
-  float:right;
-  text-decoration-color: black;
-  font-size:30px;
-  padding: 30px;
-  
-  
-}
-
-.topnavlist{
-  list-style: none;
-  margin:0;
-  padding:0;
 }
 
 .a: link {
@@ -53,13 +37,5 @@ body{
   display:block;
   margin-left:auto;
   margin-right:auto;
- 
 }
 
-.bottomnav{
-  color: black;
-  float: left;
-  font-size: 20px;
-  padding: 60px;
-  display:inline-block;
-}
