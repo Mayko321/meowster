@@ -12,6 +12,8 @@ html
     script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js', integrity='sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ', crossorigin='anonymous')
     link(href='https://use.fontawesome.com/releases/v5.1.0/css/all.css', integrity='sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt', crossorigin='anonymous', rel='stylesheet')
     link(href='/style.css', rel='stylesheet', type='text/css')
+    
+    script(src='/javascript/client_register.js')
   body
     nav.navbar.navbar-expand-lg.navbar-light.bg-light
       span.input-group-addon
@@ -35,7 +37,7 @@ html
           li.nav-sponsor
             a.nav-link(href='register') Register
     h1.title Meowster
-    form(method='POST', action='mongodb://maykie:cheese123@ds261540.mlab.com:61540/meowster', name='regform', onsubmit='return info();')
+    form(method='POST', action='/register', name='regform', onsubmit="return validateForm()")
       .input-group.input-group-lg
         span.input-group-addon
           span.fas.fa-user

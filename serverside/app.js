@@ -49,7 +49,7 @@ app.get('/sponsor', function(req, res,next){
 //gets the register page when it is clicked on
 app.get('/register', function(req,res,next){
   console.log("register is up");
-     res.render('register');
+  res.render('register');
 });
 
 //gets the login page
@@ -59,31 +59,14 @@ app.get('/login',function(req,res,next){
 });
 
 
-//Registration form validation *i like the ajax one
-function info(){
-  var firstname = document.getElementById("firstname").value;
-  var surname = document.getElementById("surname").value;
-  var email = document.getElementById("email").value;
-  var password = document.getElementById("password").value;
-  var confirmpass = document.getElementById("confirmpass").value;
-  
-  if (firstname === "" ){
-    alert("Please enter all fields");
-    return false;
-  }
-  else{
-    return true;
-  }
-  
-}
-
-                           //New user section
-
 //adding a new user to the database
 app.post('/register',function(req,res,next){
-  User.create(req.body).then(function(user){
-    res.send(user);  
-  });
+   console.log("posting data");
+  
+// there is something wrong with this code, might need to look into this.  
+//   User.create(req.body).then(function(user){
+//     res.send(user);  
+//   });
 });
 
 
