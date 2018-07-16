@@ -34,11 +34,17 @@ app.get('/', function(req, res,next){
   res.render('index');
 });
 
+//gets the about us page when clicked on
 app.get('/aboutus', function(req, res,next){
   console.log("about us page is up");
   res.render('aboutus');
 });
 
+//gets the sponsor page when clicked on
+app.get('/sponsor', function(req, res,next){
+  console.log("sponsor page is up");
+  res.render('sponsor');
+});
 
 //gets the register page when it is clicked on
 app.get('/register', function(req,res,next){
