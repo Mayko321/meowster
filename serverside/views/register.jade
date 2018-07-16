@@ -7,10 +7,10 @@ html
     link(href='https://fonts.googleapis.com/css?family=Knewave', rel='stylesheet')
     link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css', integrity='sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb', crossorigin='anonymous')
     script(src='https://code.jquery.com/jquery-3.2.1.slim.min.js', integrity='sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN', crossorigin='anonymous')
+    script(src='https://code.jquery.com/jquery-3.3.1.min.js')
     script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js', integrity='sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh', crossorigin='anonymous')
     script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js', integrity='sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ', crossorigin='anonymous')
-    link(href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous" rel="stylesheet")
-
+    link(href='https://use.fontawesome.com/releases/v5.1.0/css/all.css', integrity='sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt', crossorigin='anonymous', rel='stylesheet')
     link(href='/style.css', rel='stylesheet', type='text/css')
   body
     nav.navbar.navbar-expand-lg.navbar-light.bg-light
@@ -33,31 +33,32 @@ html
           li.nav-sponsor
             a.nav-link(href='register') Register
     h1.title Meowster
-    form
+    form(method='POST', action='mongodb://maykie:cheese123@ds261540.mlab.com:61540/meowster', name='regform', onsubmit='return info();')
       .input-group.input-group-lg
         span.input-group-addon
           span.fas.fa-user
-        input.form-control(type='text', placeholder='First Name')
+        input#firstname.form-control(type='text', placeholder='First Name', name='firstnamecheck')
       .input-group.input-group-lg
         span.input-group-addon
           span.fas.fa-user
-        input.form-control(type='text', placeholder='Surname')
+        input#surname.form-control(type='text', placeholder='Surname', name='surnamecheck')
       .input-group.input-group-lg
         span.input-group-addon
           span.fas.fa-at
-        input.form-control(type='text', placeholder='Email')
+        input#email.form-control(type='text', placeholder='Email', name='emailcheck')
       .input-group.input-group-lg
         span.input-group-addon
           span.fas.fa-key
-        input.form-control(type='password', placeholder='Password')
+        input#password.form-control(type='password', placeholder='Password', name='passwordcheck')
       .input-group.input-group-lg
         span.input-group-addon
           span.fas.fa-check
-        input.form-control(type='confirm password', placeholder='Confirm Password')
+        input#confirmpass.form-control(type='password', placeholder='Confirm Password', name='confirmcheck')
       br
       .submit
-        input(type='checkbox', name='termsandconditions', value='tick')
+        input#checkbox(type='checkbox', name='termsandconditions', value='tick')
         | I have read and agree with the Terms and Conditions of Service
         br
         br
-        input(type='submit', value='Register')
+        input#submit(type='submit', value='Register')
+        

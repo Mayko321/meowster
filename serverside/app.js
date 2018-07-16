@@ -34,6 +34,10 @@ app.get('/', function(req, res,next){
   res.render('index');
 });
 
+app.get('/aboutus', function(req, res,next){
+  console.log("about us page is up");
+  res.render('aboutus');
+});
 
 
 //gets the register page when it is clicked on
@@ -49,14 +53,31 @@ app.get('/login',function(req,res,next){
 });
 
 
-                                            //New user section
+//Registration form validation *i like the ajax one
+function info(){
+  var firstname = document.getElementById("firstname").value;
+  var surname = document.getElementById("surname").value;
+  var email = document.getElementById("email").value;
+  var password = document.getElementById("password").value;
+  var confirmpass = document.getElementById("confirmpass").value;
+  
+  if (firstname === "" ){
+    alert("Please enter all fields");
+    return false;
+  }
+  else{
+    return true;
+  }
+  
+}
+
+                           //New user section
 
 //adding a new user to the database
-app.post('/newuser',function(req,res,next){
+app.post('/register',function(req,res,next){
   User.create(req.body).then(function(user){
     res.send(user);  
   });
-//     .catch(next); 
 });
 
 
