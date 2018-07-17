@@ -15,6 +15,7 @@ app.set('view engine', 'jade')
 
 //instructing the app to use body parser which will help us pass json data
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 //connecting to cloud database storage called mLabs sandbox
 mongoose.connect ('mongodb://maykie:cheese123@ds261540.mlab.com:61540/meowster');
@@ -61,12 +62,12 @@ app.get('/login',function(req,res,next){
 
 //adding a new user to the database
 app.post('/register',function(req,res,next){
-   console.log("posting data");
+   console.log(req.body.firstnamecheck);
+   console.log("req.body.user.surnamecheck");
+   console.log("req.body.user.emailcheck");
+   console.log("req.body.user.passwordcheck");
+   console.log("req.body.user.confirmcheck");
   
-// there is something wrong with this code, might need to look into this.  
-//   User.create(req.body).then(function(user){
-//     res.send(user);  
-//   });
 });
 
 

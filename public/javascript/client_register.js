@@ -1,13 +1,26 @@
-function validateForm() {
-  console.log("i am valdint lajflasfouahslfoi");
-  if (document.forms["regform"]["firstnamecheck"].value === "")
-  {
-      console.log("false valid");
-      return false;
-  }
-  else{
-    console.log("true valid");
+$(document).ready(function () {
 
-    return true;
-  }
-}
+    $('#myform').validate({ // initialize the plugin
+        rules: {
+            firstnamecheck: {
+                required: true,
+                minlength: 1
+            },
+            surnamecheck: {
+                required: true,
+                minlength: 1
+            },
+            emailcheck: {
+              required: true,
+              email:true
+            },
+          termsandconditions: {
+            required: true
+          }
+        },
+        submitHandler: function (form) {
+            return true;
+        }
+    });
+
+});
