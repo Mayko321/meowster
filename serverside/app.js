@@ -59,40 +59,31 @@ app.get('/login',function(req,res,next){
   res.render('login');
 });
 
-
-//adding a new user to the database
-app.post('/register',function(req,res,next){
-   console.log(req.body.firstnamecheck);
-   console.log(req.body.surnamecheck);
-   console.log(req.body.emailcheck);
-   console.log(req.body.passwordcheck);
-   console.log(req.body.confirmcheck);
-}); 
-
+//adding a new user to the data
 //sending the new user data to sandbox in mlab
 app.post('/register', function(req,res){
-  if(req.body.password && req.body.email && req.body.firstname && req.body.lastname)
+  if(req.body.passwordcheck && req.body.emailcheck && req.body.firstnamecheck && req.body.surnamecheck)
   {
-    user.create({
-      firstname: req.body.firstname,
-      surname: req.body.surname,
-      email: req.body.email,
-      password: req.body.password
+    User.create({
+      firstname: req.body.firstnamecheck,
+      surname: req.body.surnamecheck,
+      email: req.body.emailcheck,
+      password: req.body.passwordcheck
       
     },
-      function (err, users){
-        if (err) return res.status(500).send("there is a problem adding the information to the database");
-        res.status(200).send({"success":true, "msg":"user successfully created"});
-      //FINSIH ME!
-      
+    function (err, users){
+      if (err) return res.render('register', {"errorString": err});
+       res.redirect('/login')
     });          
     
+  }else{
+    res.render('register', {"errorString": "oops something went wrong please try and register again"});
   }
   
 });
 
-//show new user profile page
-app.get('/profile',function(req,res,next){
+//show and display the data of the new user profile page
+app.get('/userprofile',function(req,res,next){
   res.send('user profile');    
 });
 

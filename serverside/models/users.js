@@ -4,10 +4,15 @@ const Schema = mongoose.Schema;
 // creating multiple users schema and model
 const UserSchema = Schema({
   
+  email:{
+    type: String,
+    required: [true, 'Email is required'], 
+  },
+  
   firstname:{
     type: String,
-    required: [true, 'First Name is required'], 
-},
+    required: [true, 'First name is required'], 
+  },
   surname:{
     type:String,
     required: [true, 'Surname is required'],
