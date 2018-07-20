@@ -55,8 +55,8 @@ app.get('/register', function(req,res,next){
 
 //gets the login page
 app.get('/login',function(req,res,next){
-  console.log("login is running");
-  res.render('userprofile');
+  console.log("login is cheese");
+  res.render('login');
 });
 
 //adding a new user to the data
@@ -93,7 +93,7 @@ app.get('/login',function(req,res,next){
           req.session.User = user;
           res.redirect('/userprofile')
         }else{
-          res.render('login', {"errorString": "ooopssomething went wrong please try and login again"});
+          res.render('userprofile', {"errorString": "ooopssomething went wrong please try and login again"});
         }
       }
       
@@ -102,6 +102,11 @@ app.get('/login',function(req,res,next){
   }
     
 });
+
+//Redirects the login page to the user profile page
+app.get('/userprofile', function(req,res){
+  
+})
 
 
 
