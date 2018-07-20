@@ -56,7 +56,7 @@ app.get('/register', function(req,res,next){
 //gets the login page
 app.get('/login',function(req,res,next){
   console.log("login is running");
-  res.render('login');
+  res.render('userprofile');
 });
 
 //adding a new user to the data
