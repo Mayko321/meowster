@@ -109,12 +109,65 @@ app.get('/userprofile', function(req,res){
     user.findOne({email: req.session.user.email}, function(err, user){
       if(!user){
         //if the user isn't found in the database, this will reset the session information and
-        //redirect the user to the  
+        //redirect the user to the login page 
+        req.session.reset();
+        res.direct('/login');
+      }else{
+        res.status(200).send({
+          "emailcheck": user.emailcheck,
+          "passwordcheck": user.passwordcheck,
+          
+        });                
       }
     });
     
+  }else{
+    res.status(400).send({"error":"bad request"});
   }
   
+});
+
+//updating the user profile page
+app.post('/userprofile'/update, function(req,res){
+  if(req.body.firstname && req.body.lastname){
+    if(req.session && req.session.user){  //this line here checks if the user exists
+      //it will look up the user in the database by pulling their email from the session
+      user.findOne({ emailcheck: req.session.user.emailcheck}, function(err, user_found){
+        if (!user_found){
+          //if the user isnt found in the database, reset the session information and redirect the user to the login page
+          req.session.reset();
+          res.status(500).send({
+            "success": false, "msg":"unknown user failed to updated profile"
+          });
+        }else{
+          //updates the users firstname, lastname,email and password
+          user_found.firstnamecheck=req.body.firstnamecheck;
+          user_found.surnamecheck=req.body.surnamecheck;
+          user_found.emailcheck= req.body.emailcheck;
+          user_found.passwordcheck=req.body.passwordcheck
+          user_found.save(function(err, doc){
+            if (err) return res.send(500, {"success":false, error:err});
+            res.status(200).send({
+              "success":true,"msg":"profile updated"
+            });
+          });
+         
+        }
+      });
+      
+    }else{
+      res.status(400).send({"error":"bad request"});
+    }
+  }else{
+    res.status(400).send({"error": "bad request"});
+  }
+  
+});
+
+//to create a logout and make sure that the session resets by going back to the login page
+app.get('/logout', function(req, res){
+  req.session.reset();
+  res.redirect('/login');
 });
 
 
