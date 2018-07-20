@@ -4,11 +4,11 @@ $(document).ready(function () {
         rules: {
             firstnamecheck: {
                 required: true,
-                minlength: 4
+                minlength: 1
             },
             surnamecheck: {
                 required: true,
-                minlength: 4
+                minlength: 1
             },
             emailcheck: {
               required: true,

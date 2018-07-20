@@ -73,7 +73,7 @@ app.post('/register', function(req,res){
     },
     function (err, users){
       if (err) return res.render('register', {"errorString": err});
-       res.redirect('/login')
+       res.redirect('/login') //when the user signs in it redirects the user to the login page.
     });          
     
   }else{
@@ -82,6 +82,32 @@ app.post('/register', function(req,res){
   
 });
 
+//writes the login request
+app.get('/login',function(req,res,next){
+  if (req.body.passwordcheck && req.body.emailcheck){
+    user.findOne({emailcheck: req.body.emailcheck}, function(err, user){
+      if (err) return handleError(err);
+      if (user){
+        if(req.body.passwordcheck === user.passwordcheck){
+          //sets a cookie with the users information
+          req.session.User = user;
+          res.redirect('/userprofile')
+        }else{
+          res.render('login', {"errorString": "ooopssomething went wrong please try and login again"});
+        }
+      }
+      
+    });
+    
+  }
+    
+});
+
+
+
+
+
+                                            //MY WRITTEN STUFF
 //show and display the data of the new user profile page
 app.get('/userprofile',function(req,res,next){
   res.send('user profile');    
