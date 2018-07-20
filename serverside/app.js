@@ -105,8 +105,17 @@ app.get('/login',function(req,res,next){
 
 //Redirects the login page to the user profile page
 app.get('/userprofile', function(req,res){
+  if (req.session && req.session.user){//this will check if the session exists and it will look up the user and pull their email address from it.
+    user.findOne({email: req.session.user.email}, function(err, user){
+      if(!user){
+        //if the user isn't found in the database, this will reset the session information and
+        //redirect the user to the  
+      }
+    });
+    
+  }
   
-})
+});
 
 
 
