@@ -128,7 +128,7 @@ app.get('/userprofile', function(req,res){
 });
 
 //updating the user profile page
-app.post('/userprofile'/update, function(req,res){
+app.post('/userprofile', function(req,res){
   if(req.body.firstname && req.body.lastname){
     if(req.session && req.session.user){  //this line here checks if the user exists
       //it will look up the user in the database by pulling their email from the session
