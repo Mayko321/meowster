@@ -44,7 +44,13 @@ body{
   font-size: 25px;
 }
 .cat_banner{
-  width: 100%;
-  
-  
+  width: 100%;  
+}
+.wrapper{
+  font-colour: black;
+  text-align: center;
+}
+.contact{
+  text-align:center;
+  font-size: 25px;
 }

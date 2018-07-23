@@ -38,7 +38,19 @@ html
             a.nav-link(href='register') Register
     h1.title User Profile
     .submit
-       
-        br
-        input#submit(type='submit', value='Log out')
-
+      br
+      input#submit(type='submit', value='Log out')
+    #user-profile.user-profile
+      .tabble
+        ul.nav.nav-tabs(class='padding-18> <li class=')
+          a(data-toggle='tab', href='#home')
+            li.green.ace-icon.fa.fa-user.bigger-120
+              | Profile
+          li
+            a(data-toggle='tab', href='#feed')
+              i.orange.ace-icon.fa.fa-rss.bigger-120
+              |         Activity Feed
+          li
+            a(data-toggle='tab', href='#friends')
+              i.pink.ace-icon.fa.fa-picture-o.bigger-120
+              |         Pictures
