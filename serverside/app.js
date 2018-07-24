@@ -91,7 +91,7 @@ app.get('/login',function(req,res,next){
         if(req.body.passwordcheck === user.passwordcheck){
           //sets a cookie with the users information
           req.session.User = user;
-          res.redirect('/userprofile')
+          res.redirect('userprofile')
         }else{
           res.render('userprofile', {"errorString": "ooopssomething went wrong please try and login again"});
         }
@@ -176,7 +176,7 @@ app.get('/logout', function(req, res){
 
                                             //MY WRITTEN STUFF
 //show and display the data of the new user profile page
-app.get('/userprofile',function(req,res,next){
+app.get('userprofile',function(req,res,next){
   res.send('user profile');    
 });
 
