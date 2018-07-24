@@ -4,6 +4,14 @@ const bodyParser = require('body-parser');
 const mongoose = require ('mongoose');
 const User = require('./models/users');
 const Cat = require('./models/cat');
+var session = require('client-sessions');
+
+app.use(session({
+  cookieName: 'session',
+  secret: 'sessions for meowster',
+  duration: 30 * 60 * 1000,
+  activeDuration: 5 * 60 * 1000,
+}));
 
 //make sure that the app is showing the static pages
 app.use(express.static('../public'));//allows access to the public folder
@@ -83,17 +91,18 @@ app.post('/register', function(req,res){
 });
 
 //writes the login request
-app.get('/login',function(req,res,next){
+app.post('/login',function(req,res,next){
   if (req.body.passwordcheck && req.body.emailcheck){
-    user.findOne({emailcheck: req.body.emailcheck}, function(err, user){
+    User.findOne({email: req.body.emailcheck}, function(err, user){
       if (err) return handleError(err);
       if (user){
-        if(req.body.passwordcheck === user.passwordcheck){
+        
+        if(req.body.passwordcheck === user.password){
           //sets a cookie with the users information
-          req.session.User = user;
-          res.redirect('userprofile')
+          req.session.user = user;
+          res.redirect('/userprofile')
         }else{
-          res.render('userprofile', {"errorString": "ooopssomething went wrong please try and login again"});
+          res.render('login', {"errorString": "ooopssomething went wrong please try and login again"});
         }
       }
       
@@ -106,23 +115,18 @@ app.get('/login',function(req,res,next){
 //Redirects the login page to the user profile page
 app.get('/userprofile', function(req,res){
   if (req.session && req.session.user){//this will check if the session exists and it will look up the user and pull their email address from it.
-    user.findOne({email: req.session.user.email}, function(err, user){
+    User.findOne({email: req.session.user.email}, function(err, user){
       if(!user){
         //if the user isn't found in the database, this will reset the session information and
         //redirect the user to the login page 
         req.session.reset();
-        res.direct('/login');
+        res.redirect('/login');
       }else{
-        res.status(200).send({
-          "emailcheck": user.emailcheck,
-          "passwordcheck": user.passwordcheck,
-          
-        });                
+        res.render('userprofile', {"user": user});          
       }
-    });
-    
+    });    
   }else{
-    res.status(400).send({"error":"bad request"});
+    res.redirect('/login')
   }
   
 });
@@ -143,7 +147,7 @@ app.post('/userprofile', function(req,res){
           //updates the users firstname, lastname,email and password
           user_found.firstnamecheck=req.body.firstnamecheck;
           user_found.surnamecheck=req.body.surnamecheck;
-          user_found.emailcheck= req.body.emailcheck;
+          user_found.emailcheck=req.body.emailcheck;
           user_found.passwordcheck=req.body.passwordcheck
           user_found.save(function(err, doc){
             if (err) return res.send(500, {"success":false, error:err});

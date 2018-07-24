@@ -37,14 +37,15 @@ html
         li.nav-sponsor
           a.nav-link(href='register') Register
   h1.title Meowster
-  .input-group.input-group-lg
-    span.input-group-addon
-      span.fas.fa-at
-    input#email.form-control(type='text', placeholder='Email', name='emailcheck')
-  .input-group.input-group-lg
-    span.input-group-addon
-      span.fas.fa-key
-    input#password.form-control(type='password', placeholder='Password', name='passwordcheck')
-  .submit
-    br
-    input#submit(type='submit', value='Login')
+  form#loginform(method='POST', action='/login', name='login')
+    .input-group.input-group-lg
+      span.input-group-addon
+        span.fas.fa-at
+      input#email.form-control(type='text', placeholder='Email', name='emailcheck')
+    .input-group.input-group-lg
+      span.input-group-addon
+        span.fas.fa-key
+      input#password.form-control(type='password', placeholder='Password', name='passwordcheck')
+    .submit
+      br
+      input#submit(type='submit', value='Login')
