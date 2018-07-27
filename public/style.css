@@ -57,27 +57,3 @@ body{
 
                                                    /* profile css*/
 
-.profile-picture {
-    border: 1px solid #CCC;
-    background-color: #FFF;
-    padding: 2px;
-    display: inline-block;
-    max-width: 100%;
-    box-sizing: border-box;
-    box-sizing: border-box;
-    box-sizing: border-box;
-    box-shadow: 1px 1px 1px rgba(0, 0, 0, .15)
-}
-
-.submitlogout{
-  float:right;
-}
-
-.profilename{
-  text-align: right;
-  float:right;
-}
-.widget-main{
-  float:right;
-  inline-box-align:right;
-}
