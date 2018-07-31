@@ -35,16 +35,23 @@ html
               | Logout 
               span.sr-only (current)
           li.nav-sponsor
-            a.nav-link(href='register') Register
+            a.nav-link(href='register') Profile
     .container-full(style='max-width: auto; margin:0 auto; padding:10px;')
       .row
         #profilepic.col-md-3.col-sm-6.col-xs-12.content
           img.img-thumbnail(src='images/sandra.jpg', alt='cathy', style='width:100%', align='left')
+          br
+          br
+          h3(style='padding-left: 240px;')
+            a(href='#') Edit
         #message.col-md-9.col-sm-6.col-xs-12.sidebar
           br
           br
-          h1 Cathy Brown
+          h1.profilename(style='padding-left: 25px;') Cathy Brown
           .navbar-text.pull-right
-            i.fas.fa-heart.fa-2x
-            i.fas.fa-envelope.fa-2x
-            i.fas.fa-money-bill-alt.fa-2x
+            a(style='padding-left:25px;', href='#')
+              i.fas.fa-heart.fa-3x.fa-fw
+              a(style='padding-left:25px;', href='#')
+                i.fas.fa-envelope.fa-3x.fa-fw
+                a(style='padding-left:25px;', href='#')
+                  i.fas.fa-money-bill-alt.fa-3x.fa-fw
