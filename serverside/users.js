@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 // creating multiple users schema
 const User = new Schema ({
   
-  firstName: String,
+  firstname: String,
   surname: String,
   username: { type: String, required: true, unique: true},
   userId: { type: Number, required: true, unique: true},

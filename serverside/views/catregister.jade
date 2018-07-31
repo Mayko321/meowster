@@ -31,34 +31,38 @@ html
             a.nav-link(href='sponsor') Sponsor
         ul.navbar-nav.ml-auto
           li.nav-login
-            a.nav-link(href='logout')
-              | Logout 
+            a.nav-link(href='login')
+              | Login 
               span.sr-only (current)
           li.nav-sponsor
-            a.nav-link(href='register') Profile
-    .container-full(style='max-width: auto; margin:0 auto; padding:10px;')
-      .row
-        #profilepic.col-md-3.col-sm-6.col-xs-12.content
-          img.img-thumbnail(src='images/sandra.jpg', alt='cathy', style='width:100%', align='left')
-          h3.edit
-            a(href='#') Edit
-        #message.col-md-9.col-sm-6.col-xs-12.sidebar
-          br
-          br
-          h1.profilename(style='padding:25px;')  #{user.firstname} #{user.surname}
-          .navbar-text.pull-right
-            a(style='padding-left:25px;', href='#')
-              i.fas.fa-heart.fa-3x.fa-fw
-            a(style='padding-left:25px;', href='#')
-              i.fas.fa-envelope.fa-3x.fa-fw
-            a(style='padding-left:25px;', href='#')
-              i.fas.fa-money-bill-alt.fa-3x.fa-fw
-            a(style='padding-left:25px;', href='#')
-              i.fas.fa-paw.fa-3x.fa-fw
-            a(style='padding-left:25px;', href='/catregister')
-          br
-          br
-          form(action='/html/tags/html_form_tag_action.cfm', method='post')
-            div
-              textarea#comments.comments(style='padding:100px;') Leave a comment..
-            input(type='submit', value='Submit')
+            a.nav-link(href='register') Register
+    h1.title Meowster
+    h2.error #{errorString}
+    form(method='POST', action='/register', id='myform', name='regform')
+      .input-group.input-group-lg
+        span.input-group-addon
+          span.fas.fa-user
+        input#firstname.form-control(type='text', placeholder='First Name', name='firstnamecheck')
+      .input-group.input-group-lg
+        span.input-group-addon
+          span.fas.fa-user
+        input#surname.form-control(type='text', placeholder='Surname', name='surnamecheck')
+      .input-group.input-group-lg
+        span.input-group-addon
+          span.fas.fa-at
+        input#email.form-control(type='text', placeholder='Email', name='emailcheck')
+      .input-group.input-group-lg
+        span.input-group-addon
+          span.fas.fa-key
+        input#password.form-control(type='password', placeholder='Password', name='passwordcheck')
+      .input-group.input-group-lg
+        span.input-group-addon
+          span.fas.fa-check
+        input#confirmpass.form-control(type='password', placeholder='Confirm Password', name='confirmcheck')
+      br
+      .submit
+        input#checkbox(type='checkbox', name='termsandconditions', value='tick')
+        | I have read and agree with the Terms and Conditions of Service
+        br
+        br
+        input#submit(type='submit', value='Register')

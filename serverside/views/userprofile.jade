@@ -45,7 +45,7 @@ html
         #message.col-md-9.col-sm-6.col-xs-12.sidebar
           br
           br
-          h1.profilename(style='padding:25px;') Cathy Brown
+          h1.profilename(style='padding:25px;')  #{user.firstname} #{user.surname}
           .navbar-text.pull-right
             a(style='padding-left:25px;', href='#')
               i.fas.fa-heart.fa-3x.fa-fw
@@ -55,7 +55,7 @@ html
               i.fas.fa-money-bill-alt.fa-3x.fa-fw
             a(style='padding-left:25px;', href='#')
               i.fas.fa-paw.fa-3x.fa-fw
-            a(style='padding-left:25px;', href='#')
+            a(style='padding-left:25px;', href='/catregister')
           br
           br
           form(action='/html/tags/html_form_tag_action.cfm', method='post')

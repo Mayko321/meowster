@@ -122,7 +122,7 @@ app.get('/userprofile', function(req,res){
         req.session.reset();
         res.redirect('/login');
       }else{
-        res.render('userprofile', {"user": user});          
+        res.render('userprofile', {"user": req.session.user});          
       }
     });    
   }else{
@@ -175,16 +175,6 @@ app.get('/logout', function(req, res){
 });
 
 
-
-
-
-                                            //MY WRITTEN STUFF
-//show and display the data of the new user profile page
-app.get('userprofile',function(req,res,next){
-  res.send('user profile');    
-});
-
-
 // updating a particular user account with their new details to the database
 app.put('/updateuser/:id', function(req,res,next){
   User.findByIdAndUpdate({_id: req.params.id}, req,res.body).then(function(){
@@ -193,7 +183,6 @@ app.put('/updateuser/:id', function(req,res,next){
     });    
   }); 
 });
-
 
 //user can delete their account using parameters to select a specific user
 app.delete('/user/:id',function(req,res,next){
@@ -205,8 +194,31 @@ app.delete('/user/:id',function(req,res,next){
 
 
                                           //the cat section//
+
 //adding a new cat to the database
-app.post('/newcat',function(req,res,next){
+app.post('/register', function(req,res){
+  if(req.body.passwordcheck && req.body.emailcheck && req.body.firstnamecheck && req.body.surnamecheck)
+  {
+    User.create({
+      firstname: req.body.firstnamecheck,
+      surname: req.body.surnamecheck,
+      email: req.body.emailcheck,
+      password: req.body.passwordcheck
+      
+    },
+    function (err, users){
+      if (err) return res.render('register', {"errorString": err});
+       res.redirect('/login') //when the user signs in it redirects the user to the login page.
+    });          
+    
+  }else{
+    res.render('register', {"errorString": "oops something went wrong please try and register again"});
+  }
+  
+});
+
+//adding a new cat to the database
+app.post('catprofile',function(req,res,next){
   Cat.create(req.body).then(function(cat){
    res.send(cat);   
   }).catch(next);    
