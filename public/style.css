@@ -56,4 +56,16 @@ body{
 }
 
                                                    /* profile css*/
+.profilename{
+ text-align: left;
+ padding-center: 100px;
+}
 
+.comments{
+  padding:100px;
+}
+
+.edit{
+  text-align:center;
+  padding: 0 50
+}

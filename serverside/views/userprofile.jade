@@ -40,14 +40,12 @@ html
       .row
         #profilepic.col-md-3.col-sm-6.col-xs-12.content
           img.img-thumbnail(src='images/sandra.jpg', alt='cathy', style='width:100%', align='left')
-          br
-          br
-          h3(style='padding-left: 240px;')
+          h3.edit
             a(href='#') Edit
         #message.col-md-9.col-sm-6.col-xs-12.sidebar
           br
           br
-          h1.profilename(style='padding-left: 25px;') Cathy Brown
+          h1.profilename(style='padding:25px;') Cathy Brown
           .navbar-text.pull-right
             a(style='padding-left:25px;', href='#')
               i.fas.fa-heart.fa-3x.fa-fw
@@ -55,3 +53,9 @@ html
                 i.fas.fa-envelope.fa-3x.fa-fw
                 a(style='padding-left:25px;', href='#')
                   i.fas.fa-money-bill-alt.fa-3x.fa-fw
+          br
+          br
+          form(action='/html/tags/html_form_tag_action.cfm', method='post')
+            div
+              textarea#comments.comments(style='padding:100px;') Leave a comment..
+            input(type='submit', value='Submit')
