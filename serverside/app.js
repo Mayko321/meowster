@@ -59,17 +59,30 @@ app.get('/sponsor', function(req, res,next){
 
 //gets the register page when it is clicked on
 app.get('/register', function(req,res,next){
-  console.log("register is up");
+  if (req.session.user){
+    res.redirect('/userprofile') //checks if user is already logged in, if they are they are directed to the userprofile page
+  }
   res.render('register');
 });
 
 //gets the login page
 app.get('/login',function(req,res,next){
-  console.log("login is cheese");
+  if (req.session.user){
+    res.redirect('/userprofile')//checks if user is already logged in, if they are they are directed to the userprofile page
+  }
   res.render('login');
 });
 
                                       //adding a new user to the data
+
+//gets the catreg page when it is clicked on from the user profile page
+app.get('/catreg', function(req,res,next){
+  if (!req.session.user){//the ! tells the app to redirect the user to the userprofile page if they arent logged in.
+    res.redirect('/userprofile') 
+  }
+  res.render('catreg');
+});
+
 //sending the new user data to sandbox in mlab
 app.post('/register', function(req,res){
   if(req.body.passwordcheck && req.body.emailcheck && req.body.firstnamecheck && req.body.surnamecheck)
