@@ -6,6 +6,8 @@ const User = require('./models/users');
 const Cat = require('./models/cat');
 var session = require('client-sessions');
 
+//we use session to ensure that the user is able to be logged in for a certain period of time before
+//the server stops talking to the client side and logs out.
 app.use(session({
   cookieName: 'session',
   secret: 'sessions for meowster',
@@ -36,7 +38,7 @@ app.use(function(error,req,res,next){
 });
 
 
-//The api for our web application STARTS HERE:
+                        //The api for our web application STARTS HERE:
 //gets the homepage for you
 app.get('/', function(req, res,next){
   console.log("homepage is up");
@@ -67,7 +69,7 @@ app.get('/login',function(req,res,next){
   res.render('login');
 });
 
-//adding a new user to the data
+                                      //adding a new user to the data
 //sending the new user data to sandbox in mlab
 app.post('/register', function(req,res){
   if(req.body.passwordcheck && req.body.emailcheck && req.body.firstnamecheck && req.body.surnamecheck)
@@ -196,7 +198,7 @@ app.delete('/user/:id',function(req,res,next){
                                           //the cat section//
 
 //adding a new cat to the database
-app.post('/register', function(req,res){
+app.post('/catregister', function(req,res){
   if(req.body.passwordcheck && req.body.emailcheck && req.body.firstnamecheck && req.body.surnamecheck)
   {
     User.create({

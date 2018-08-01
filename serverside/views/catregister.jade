@@ -37,32 +37,28 @@ html
           li.nav-sponsor
             a.nav-link(href='register') Register
     h1.title Meowster
-    h2.error #{errorString}
-    form(method='POST', action='/register', id='myform', name='regform')
+    h2.error
+    form#catform(method='POST', action='/register', name='catregform')
       .input-group.input-group-lg
         span.input-group-addon
-          span.fas.fa-user
-        input#firstname.form-control(type='text', placeholder='First Name', name='firstnamecheck')
+          span.fas.fa-paw
+        input#catname.form-control.input-sm(type='text', placeholder='Cat Name', name='catnamecheck')
       .input-group.input-group-lg
         span.input-group-addon
-          span.fas.fa-user
-        input#surname.form-control(type='text', placeholder='Surname', name='surnamecheck')
+          span.fas.fa-transgender.fa-1x
+        input#catgender.form-control(type='text', placeholder='Cat Gender', name='catgendercheck')
       .input-group.input-group-lg
         span.input-group-addon
-          span.fas.fa-at
-        input#email.form-control(type='text', placeholder='Email', name='emailcheck')
+          span.fab.fa-pagelines
+        input#catage.form-control(type='text', placeholder='Cat Age', name='catagecheck')
       .input-group.input-group-lg
         span.input-group-addon
-          span.fas.fa-key
-        input#password.form-control(type='password', placeholder='Password', name='passwordcheck')
+          span.far.fa-comment
+        input#charity.form-control(type='text', placeholder='charity', name='charitycheck')
       .input-group.input-group-lg
         span.input-group-addon
-          span.fas.fa-check
-        input#confirmpass.form-control(type='password', placeholder='Confirm Password', name='confirmcheck')
+          span.fas.fa-heart
+        input#sponsor.form-control(type='number', placeholder='sponsor', name='sponsorcheck')
       br
       .submit
-        input#checkbox(type='checkbox', name='termsandconditions', value='tick')
-        | I have read and agree with the Terms and Conditions of Service
-        br
-        br
         input#submit(type='submit', value='Register')
