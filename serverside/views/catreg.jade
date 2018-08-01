@@ -37,8 +37,8 @@ html
           li.nav-sponsor
             a.nav-link(href='register') Register
     h1.title Meowster
-    h2.error
-    form#catform(method='POST', action='/register', name='catregform')
+    h2.error#{errorString}
+    form(method='POST', action='/catregister',id='catform', name='catregform')
       .input-group.input-group-lg
         span.input-group-addon
           span.fas.fa-paw
@@ -58,7 +58,7 @@ html
       .input-group.input-group-lg
         span.input-group-addon
           span.fas.fa-heart
-        input#sponsor.form-control(type='number', placeholder='sponsor', name='sponsorcheck')
+        input#sponsor.form-control(type='text', placeholder='sponsor', name='sponsorcheck')
       br
       .submit
         input#submit(type='submit', value='Register')

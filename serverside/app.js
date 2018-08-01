@@ -198,7 +198,7 @@ app.delete('/user/:id',function(req,res,next){
                                           //the cat section//
 
 //adding a new cat to the database
-app.post('/catregister', function(req,res){
+app.post('catreg', function(req,res){
   if(req.body.passwordcheck && req.body.emailcheck && req.body.firstnamecheck && req.body.surnamecheck)
   {
     User.create({

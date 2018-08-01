@@ -35,7 +35,7 @@ html
               | Logout 
               span.sr-only (current)
           li.nav-sponsor
-            a.nav-link(href='register') Profile
+            a.nav-link(href='catprofile') Profile
     .container-full(style='max-width: auto; margin:0 auto; padding:10px;')
       .row
         #profilepic.col-md-3.col-sm-6.col-xs-12.content
@@ -46,12 +46,14 @@ html
           br
           br
           h1.profilename(style='padding:25px;') Dr Charles
-          .navbar-text.pull-right
-            a(style='padding-left:25px;', href='#')
-              i.fas.fa-envelope.fa-3x.fa-fw
-            a(style='padding-left:25px;', href='#')
-              i.fas.fa-money-bill-alt.fa-3x.fa-fw
-            a(style='padding-left:25px;', href='#')
+          div
+            i.fas.fa-transgender.fa-3x  Male (include a session for this)
+            br
+            i.fab.fa-pagelines.fa-3x  3 years old (include a session for this)
+            br
+            i.far.fa-comment.fa-3x  Charity to message (session)
+            br
+            i.fas.fa-heart.fa-3x Sponsor me (session)
           br
           br
           form(action='/html/tags/html_form_tag_action.cfm', method='post')
