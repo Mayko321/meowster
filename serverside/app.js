@@ -212,22 +212,22 @@ app.delete('/user/:id',function(req,res,next){
 
 //adding a new cat to the database
 app.post('catreg', function(req,res){
-  if(req.body.passwordcheck && req.body.emailcheck && req.body.firstnamecheck && req.body.surnamecheck)
+  if(req.body.catnamecheck && req.body.catgendercheck && req.body.catagecheck && req.body.charitycheck)
   {
-    User.create({
-      firstname: req.body.firstnamecheck,
-      surname: req.body.surnamecheck,
-      email: req.body.emailcheck,
-      password: req.body.passwordcheck
+    Cat.create({
+      catname: req.body.catnamecheck,
+      catgender: req.body.catgendercheck,
+      catage: req.body.catagecheck,
+      charity: req.body.charitycheck
       
     },
     function (err, users){
-      if (err) return res.render('register', {"errorString": err});
-       res.redirect('/login') //when the user signs in it redirects the user to the login page.
+      if (err) return res.render('catreg', {"errorString": err});
+       res.redirect('/login') //when the user signs in it redirects the user to the cat register page.
     });          
     
   }else{
-    res.render('register', {"errorString": "oops something went wrong please try and register again"});
+    res.render('catreg', {"errorString": "oops something went wrong please try and register again"});
   }
   
 });
