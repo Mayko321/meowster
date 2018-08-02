@@ -210,7 +210,7 @@ app.get('/catreg', function(req,res,next){
 
                                           //the cat section//
 
-//adding a new cat to the database and sendig the data to mlab
+//sending the new cat data to sandbox on mlab
 app.post('/catreg', function(req,res){
   if(req.body.catnamecheck && req.body.catgendercheck && req.body.catagecheck && req.body.charitycheck && req.body.breedcheck)
   {
@@ -222,24 +222,17 @@ app.post('/catreg', function(req,res){
       breed: req.body.breedcheck
       
     },
-    function (err, users){
+    function (err, cat){
       if (err) return res.render('catreg', {"errorString": err});
-       res.redirect('catreg') //when the user signs in it redirects the user to the cat register page.
+       res.redirect('/catprofile') //when the user signs in it redirects the user to the cat register page.
     });          
     
   }else{
-    res.render('/catprofile', {"errorString": "oops something went wrong please try and register again"});
+    res.render('catreg', {"errorString": "oops something went wrong please try and register again"});
   }
   
 });
 
-
-//adding a new cat to the database
-app.post('catprofile',function(req,res,next){
-  Cat.create(req.body).then(function(cat){
-   res.send(cat);   
-  }).catch(next);    
-});
 
 
 //updating the cat profile
