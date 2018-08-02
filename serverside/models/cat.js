@@ -28,14 +28,17 @@ const CatSchema = Schema({
     type:String
     
   },
+  gender:{
+    type:String
+  },
   age:{
     type:Number,
   },
   
-  sponsor:{
-    type:Boolean,
-    deafult:false,
-},
+  charity:{
+    type:String
+  },
+  
   geometry:GeoSchema //add in geo location using geo json handler, giving location of the cats
   
                                          

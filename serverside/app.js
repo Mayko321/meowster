@@ -212,19 +212,21 @@ app.get('/catreg', function(req,res,next){
 
 //sending the new cat data to sandbox on mlab
 app.post('/catreg', function(req,res){
-  if(req.body.catnamecheck && req.body.catgendercheck && req.body.catagecheck && req.body.charitycheck && req.body.breedcheck)
+
+  if(req.body.catnamecheck && req.body.catgendercheck && req.body.catagecheck && 
+     req.body.charitycheck && req.body.breedcheck)
   {
     Cat.create({
-      catname: req.body.catnamecheck,
-      catgender: req.body.catgendercheck,
-      catage: req.body.catagecheck,
-      charity: req.body.charitycheck,
-      breed: req.body.breedcheck
+      name: req.body.catnamecheck,
+      gender: req.body.catgendercheck,
+      age: req.body.catagecheck,
+      breed: req.body.breedcheck,
+      charity: req.body.charitycheck
       
     },
     function (err, cat){
       if (err) return res.render('catreg', {"errorString": err});
-       res.redirect('/catprofile') //when the user signs in it redirects the user to the cat register page.
+       res.redirect('catprofile') //when the user signs in it redirects the user to the cat register page.
     });          
     
   }else{
@@ -233,6 +235,24 @@ app.post('/catreg', function(req,res){
   
 });
 
+//Redirects the cat register page to the cat profile page
+app.get('/catprofile', function(req,res){
+  if (req.session && req.session.cat){//this will check if the session exists and it will look up the user and pull their email address from it.
+    Cat.findOne({name: req.session.cat.name}, function(err, user){
+      if(!cat){
+        //if the cat isn't found in the database, this will reset the session information and
+        //redirect the cat to the login page 
+        req.session.reset();
+        res.redirect('/catreg');
+      }else{
+        res.render('catprofile', {"cat": req.session.cat});          
+      }
+    });    
+  }else{
+    res.redirect('/catprofile')
+  }
+  
+});
 
 
 //updating the cat profile
