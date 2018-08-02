@@ -32,10 +32,6 @@ const CatSchema = Schema({
     type:Number,
   },
   
-  available:{
-    type:Boolean,
-    default:false,
-},
   sponsor:{
     type:Boolean,
     deafult:false,

@@ -75,13 +75,6 @@ app.get('/login',function(req,res,next){
 
                                       //adding a new user to the data
 
-//gets the catreg page when it is clicked on from the user profile page
-app.get('/catreg', function(req,res,next){
-  if (!req.session.user){//the ! tells the app to redirect the user to the userprofile page if they arent logged in.
-    res.redirect('/userprofile') 
-  }
-  res.render('catreg');
-});
 
 //sending the new user data to sandbox in mlab
 app.post('/register', function(req,res){
@@ -206,31 +199,40 @@ app.delete('/user/:id',function(req,res,next){
   });
 });
 
+//gets the catreg page when it is clicked on from the user profile page
+app.get('/catreg', function(req,res,next){
+  if (!req.session.user){//the ! tells the app to redirect the user to the userprofile page if they arent logged in.
+    res.redirect('/userprofile') 
+  }
+  res.render('catreg');
+});
 
 
                                           //the cat section//
 
-//adding a new cat to the database
-app.post('catreg', function(req,res){
-  if(req.body.catnamecheck && req.body.catgendercheck && req.body.catagecheck && req.body.charitycheck)
+//adding a new cat to the database and sendig the data to mlab
+app.post('/catreg', function(req,res){
+  if(req.body.catnamecheck && req.body.catgendercheck && req.body.catagecheck && req.body.charitycheck && req.body.breedcheck)
   {
     Cat.create({
       catname: req.body.catnamecheck,
       catgender: req.body.catgendercheck,
       catage: req.body.catagecheck,
-      charity: req.body.charitycheck
+      charity: req.body.charitycheck,
+      breed: req.body.breedcheck
       
     },
     function (err, users){
       if (err) return res.render('catreg', {"errorString": err});
-       res.redirect('/login') //when the user signs in it redirects the user to the cat register page.
+       res.redirect('catreg') //when the user signs in it redirects the user to the cat register page.
     });          
     
   }else{
-    res.render('catreg', {"errorString": "oops something went wrong please try and register again"});
+    res.render('/catprofile', {"errorString": "oops something went wrong please try and register again"});
   }
   
 });
+
 
 //adding a new cat to the database
 app.post('catprofile',function(req,res,next){
