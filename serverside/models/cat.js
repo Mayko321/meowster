@@ -20,6 +20,9 @@ const GeoSchema = Schema({
 
 //create cat schema and model
 const CatSchema = Schema({
+//   id:{
+//     type:String
+//   },
   name:{
     type:String,
     required: [true, 'Name field is required'],

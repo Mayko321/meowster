@@ -5,6 +5,7 @@ const mongoose = require ('mongoose');
 const User = require('./models/users');
 const Cat = require('./models/cat');
 var session = require('client-sessions');
+var ObjectId = mongoose.Types.ObjectId;
 
 //we use session to ensure that the user is able to be logged in for a certain period of time before
 //the server stops talking to the client side and logs out.
@@ -31,7 +32,6 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 mongoose.connect ('mongodb://maykie:cheese123@ds261540.mlab.com:61540/meowster');
 const db = mongoose.connection;
 mongoose.Promise = global.Promise;
-
 //error handling middleware
 app.use(function(error,req,res,next){
   res.status(422).send({error:err.message}); //this will send back a message to the user saying where the error is
@@ -227,7 +227,7 @@ app.post('/catreg', function(req,res){
     },
     function (err, cat){
       if (err) return res.render('catreg', {"errorString": err});
-       res.redirect('catprofile'); //when the user signs in it redirects the user to the cat register page.
+       res.redirect('catprofile?cat='+cat._id); //when the user signs in it redirects the user to the cat register page.
     });          
     
   }else{
@@ -238,8 +238,9 @@ app.post('/catreg', function(req,res){
 
 //Redirects the cat register page to the cat profile page
 app.get('/catprofile', function(req,res){
-  if (req.session.user.email){//this will check if the session exists and it will look up the user and pull their email address from it.
-    Cat.find({user_email: req.session.user.email}, function(err, cat){
+  console.log(req.session.user.email, req.query.cat)
+  if (req.session.user.email && req.query.cat){//this will check if the session exists and it will look up the user and pull their email address from it.
+    Cat.findOne({user_email: req.session.user.email, _id: ObjectId(req.query.cat)}, function(err, cat){
       if(!cat){
         //if the cat isn't found in the database,
         //redirect the cat reg
@@ -257,6 +258,30 @@ app.get('/catprofile', function(req,res){
   }
   
 });
+
+//Redirects the cat register page to the cat profile page
+app.get('/catlist', function(req,res){
+  console.log(req.session.user.email)
+  if (req.session.user.email){//this will check if the session exists and it will look up the user and pull their email address from it.
+    Cat.find({user_email: req.session.user.email}, function(err, cats){
+      if(!cats){
+        //if the cat isn't found in the database,
+        //redirect the cat reg
+        res.redirect('/catreg');
+      }else{
+        console.log(cats)
+        res.render('catlist', {"cats": cats});
+      }
+    });    
+  }else{
+    //res.redirect('/catprofile');
+    // if no user session email redirect user to login page
+    // session is gone
+    res.render('login');
+  }
+  
+});
+
 
 
 //updating the cat profile
