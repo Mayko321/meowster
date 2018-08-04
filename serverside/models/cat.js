@@ -38,7 +38,10 @@ const CatSchema = Schema({
   charity:{
     type:String
   },
-  
+  //foreign key to identify the users cats
+  user_email:{
+    type:String  
+},
   geometry:GeoSchema //add in geo location using geo json handler, giving location of the cats
   
                                          

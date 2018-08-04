@@ -202,7 +202,7 @@ app.delete('/user/:id',function(req,res,next){
 //gets the catreg page when it is clicked on from the user profile page
 app.get('/catreg', function(req,res,next){
   if (!req.session.user){//the ! tells the app to redirect the user to the userprofile page if they arent logged in.
-    res.redirect('/userprofile') 
+    res.redirect('/userprofile');
   }
   res.render('catreg');
 });
@@ -211,6 +211,7 @@ app.get('/catreg', function(req,res,next){
                                           //the cat section//
 
 //sending the new cat data to sandbox on mlab
+//register the new cat
 app.post('/catreg', function(req,res){
 
   if(req.body.catnamecheck && req.body.catgendercheck && req.body.catagecheck && 
@@ -221,12 +222,12 @@ app.post('/catreg', function(req,res){
       gender: req.body.catgendercheck,
       age: req.body.catagecheck,
       breed: req.body.breedcheck,
-      charity: req.body.charitycheck
-      
+      charity: req.body.charitycheck,
+      user_email: req.session.user.email      
     },
     function (err, cat){
       if (err) return res.render('catreg', {"errorString": err});
-       res.redirect('catprofile') //when the user signs in it redirects the user to the cat register page.
+       res.redirect('catprofile'); //when the user signs in it redirects the user to the cat register page.
     });          
     
   }else{
@@ -237,19 +238,22 @@ app.post('/catreg', function(req,res){
 
 //Redirects the cat register page to the cat profile page
 app.get('/catprofile', function(req,res){
-  if (req.session && req.session.cat){//this will check if the session exists and it will look up the user and pull their email address from it.
-    Cat.findOne({name: req.session.cat.name}, function(err, user){
+  if (req.session.user.email){//this will check if the session exists and it will look up the user and pull their email address from it.
+    Cat.find({user_email: req.session.user.email}, function(err, cat){
       if(!cat){
-        //if the cat isn't found in the database, this will reset the session information and
-        //redirect the cat to the login page 
-        req.session.reset();
+        //if the cat isn't found in the database,
+        //redirect the cat reg
         res.redirect('/catreg');
       }else{
-        res.render('catprofile', {"cat": req.session.cat});          
+        console.log(cat)
+        res.render('catprofile', {"cat": cat});          
       }
     });    
   }else{
-    res.redirect('/catprofile')
+    //res.redirect('/catprofile');
+    // if no user session email redirect user to login page
+    // session is gone
+    res.render('login');
   }
   
 });

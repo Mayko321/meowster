@@ -35,28 +35,14 @@ html
               | Logout 
               span.sr-only (current)
           li.nav-sponsor
-            a.nav-link(href='catprofile') Profile
+            a.nav-link(href='userprofile') Profile
     .container-full(style='max-width: auto; margin:0 auto; padding:10px;')
-      .row
-        #profilepic.col-md-3.col-sm-6.col-xs-12.content
-          img.img-thumbnail(src='images/drcharles.jpg', alt='drcharles', style='width:100%', align='left')
-          h3.edit
-            a(href='#') Edit
-        #message.col-md-9.col-sm-6.col-xs-12.sidebar
-          br
-          br
-          h1.profilename(style='padding:25px;') #{cat.name}
-          div
-            i.fas.fa-transgender.fa-3x  #{cat.gender}
-            br
-            i.fab.fa-pagelines.fa-3x  #{cat.age}
-            br
-            i.far.fa-comment.fa-2x  #{cat.charity} 
-            br
-            i.fas.fa-heart.fa-2x Sponsor me 
-          br
-          br
-          form(action='/html/tags/html_form_tag_action.cfm', method='post')
-            div
-              textarea#comments.comments(style='padding:100px;') Leave a comment..
-            input(type='submit', value='Submit')
+      .component.friend_component
+        h2
+          span  Cats 
+        .cat.component
+          ul.cats
+            mylist
+              a(href='drcharles')
+                img(width='250', height='250', src='Meowster/drcharles.jpg')
+                .cats_name  Dr Charles
